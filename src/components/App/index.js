@@ -1,19 +1,23 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
-  HashRouter as Rourer,//容器
+  BrowserRouter as Rourer,//容器
   Route,
-  Link
+  Switch
 } from 'react-router-dom';
+
 import 'bootstrap/dist/css/bootstrap.css';
 
 import Home from '../Home';
 import Profile from '../Profile';
 import User from '../User';
+import Login from '../Login';
+import ProtectedRoute from '../../Route/ProtectedRoute';
+import MenuLink from '../../Route/MenuLink';
 
 export default (
   <Rourer>
     <div>
-      <nav classNname="navbar navbar-inverse">
+      <nav className="navbar navbar-inverse">
         <div className="container-fluid">
           <div className="navbar-header">
             <div className="navbar-brand">
@@ -21,18 +25,22 @@ export default (
             </div>
           </div>
           <ul className="nav navbar-nav">
-            <li><Link to="/home">Home</Link></li>
-            <li><Link to="/user">User</Link></li>
-            <li><Link to="/profile">Profile</Link></li>
+            <MenuLink to="/home" lable="Home" />
+            <MenuLink to="/user" lable="User" />
+            <MenuLink to="/profile" lable="Profile" />
           </ul>
         </div>
       </nav>
       <div className="container">
         <div className="row">
           <div className="col-sm-12">
-            <Route path="/home" component={Home} />
-            <Route path="/user" component={User} />
-            <Route path="/profile" component={Profile} />
+            <Switch>
+              <Route exact path="/" render={(props) => <div>Homepage</div>}></Route>
+              <Route path="/home" component={Home} />
+              <Route path="/user" component={User} />
+              <Route path="/login" component={Login} />
+              <ProtectedRoute path="/profile" component={Profile} />
+            </Switch>
           </div>
         </div>
       </div>
