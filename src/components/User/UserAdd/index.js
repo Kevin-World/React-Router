@@ -45,7 +45,7 @@ class UserAdd extends Component {
             <input onChange={this.handleChange} type="text" className="form-control" ref={(ref) => this.name = ref} />
           </div>
           <div className="form-group">
-            <input type="submit" className="btn btn-primary" />
+            <input type="submit" className="btn btn-primary" value="Submit" />
           </div>
         </form>
       </div>
