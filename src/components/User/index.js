@@ -5,9 +5,20 @@ import UserAdd from './UserAdd';
 import UserDetail from '../User/UserDetail';
 
 class User extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      users: []
+    }
+  }
+  componentWillMount() {
+    let userStr = localStorage.getItem('users');
+    let users = userStr ? JSON.parse(userStr) : [];
+    this.setState({ users });
+  }
   render() {
     return (
-      <div className="row">
+      <div className="row ">
         <div className="col-sm-2">
           <ul className="nav nav-stacked">
             <li><Link to="/user/list">User List</Link></li>
@@ -20,6 +31,7 @@ class User extends Component {
             <Route path="/user/add" component={UserAdd}></Route>
             <Route path="/user/detail/:id" component={UserDetail}></Route>
           </Switch>
+          <Route exact path="/user" component={UserList} />
         </div>
       </div>
     );
