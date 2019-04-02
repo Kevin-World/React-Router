@@ -35,7 +35,7 @@ export default (
         <div className="row">
           <div className="col-sm-12">
             <Switch>
-              <Route exact path="/" render={(props) => <div>Homepage</div>}></Route>
+              <Route exact path="/" render={() => <div>Homepage</div>}></Route>
               <Route path="/home" component={Home} />
               <Route path="/user" component={User} />
               <Route path="/login" component={Login} />
@@ -44,6 +44,5 @@ export default (
           </div>
         </div>
       </div>
-
     </div>
   </Rourer>);
