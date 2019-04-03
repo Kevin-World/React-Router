@@ -35,7 +35,8 @@ export default (
         <div className="row">
           <div className="col-sm-12">
             <Switch>
-              <Route exact path="/" render={() => <div>Home Page</div>}></Route>
+              <Route exact path="/"
+                render={() => <div>Home Page</div>} />
               <Route path="/home" component={Home} />
               <Route path="/user" component={User} />
               <Route path="/login" component={Login} />

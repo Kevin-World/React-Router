@@ -4,18 +4,7 @@ import UserList from './UserList';
 import UserAdd from './UserAdd';
 import UserDetail from '../User/UserDetail';
 
-class User extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      users: []
-    }
-  }
-  componentWillMount() {
-    let userStr = localStorage.getItem('users');
-    let users = userStr ? JSON.parse(userStr) : [];
-    this.setState({ users });
-  }
+export default class User extends Component {
   render() {
     return (
       <div className="row ">
@@ -37,5 +26,3 @@ class User extends Component {
     );
   }
 }
-
-export default User;

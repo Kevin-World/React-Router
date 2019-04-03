@@ -1,16 +1,11 @@
 import React, { Component } from 'react';
 
-class UserDetail extends Component {
+export default class UserDetail extends Component {
   render() {
     let id = this.props.match.params.id;
     let userStr = localStorage.getItem('users');
     let users = userStr ? JSON.parse(userStr) : [];
-    let user = users.find((user) => user.id = id);
-
-    console.log('props', this.props);
-    console.log('userStr', userStr);
-    console.log('users', users);
-    console.log('user', user);
+    let user = users.find(user => (user.id == id));
 
     return (
       <table className="table table-striped">
@@ -34,5 +29,3 @@ class UserDetail extends Component {
     );
   }
 }
-
-export default UserDetail;

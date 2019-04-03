@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Prompt } from 'react-router-dom';
 
-class UserAdd extends Component {
+export default class UserAdd extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -11,14 +11,18 @@ class UserAdd extends Component {
 
   handleSubmit = () => {
     let name = this.name.value;
-    let userStr = localStorage.getItem('users');
-    let user = userStr ? JSON.parse(userStr) : [];
-    user.push({ id: Date.now(), name });
-    localStorage.setItem('users', JSON.stringify(user));
+    if (name.length === 0)
+      alert("Name Can not be null!");
+    else {
+      let userStr = localStorage.getItem('users');
+      let user = userStr ? JSON.parse(userStr) : [];
+      user.push({ id: Date.now(), name });
+      localStorage.setItem('users', JSON.stringify(user));
 
-    this.setState(
-      { blocking: false },
-      () => this.props.history.push('/user/list'));
+      this.setState(
+        { blocking: false },
+        () => this.props.history.push('/user/list'));
+    }
   }
 
   handleChange = (e) => {
@@ -39,18 +43,20 @@ class UserAdd extends Component {
         <Prompt when={this.state.blocking}
           message={(location) => `Are you sure go to ${location.pathname} ?`} />
 
-        <form onSubmit={this.handleSubmit}>
+        <div>
           <div className="form-group">
             <label>Name</label>
             <input onChange={this.handleChange} type="text" className="form-control" ref={(ref) => this.name = ref} />
           </div>
           <div className="form-group">
-            <input type="submit" className="btn btn-primary" value="Submit" />
+            <input
+              type="button"
+              className="btn btn-primary"
+              onClick={this.handleSubmit}
+              value="Submit" />
           </div>
-        </form>
+        </div>
       </div>
     );
   }
 }
-
-export default UserAdd;
